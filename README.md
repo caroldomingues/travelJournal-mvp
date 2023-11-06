@@ -1,4 +1,4 @@
-# Full Stack Development Test - Week Five
+# MVP PROJECT
 
 This assessment tests your understanding of building a full stack app using React, Node/Express, and MySQL.
 
@@ -18,7 +18,7 @@ This assessment tests your understanding of building a full stack app using Reac
 ```bash
   DB_HOST=localhost
   DB_USER=root
-  DB_NAME=facebook
+  DB_NAME=closet
   DB_PASS=YOURPASSWORD
 ```
 
