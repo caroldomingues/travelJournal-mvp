@@ -1,3 +1,5 @@
+const cors = require("cors"); // add at the top
+
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -12,6 +14,8 @@ var app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 // app.set("view engine", "jade");
+
+app.use(cors()); // add after 'app' is created
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -37,9 +41,5 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-
-const cors = require("cors"); // add at the top
-
-app.use(cors()); // add after 'app' is created
 
 module.exports = app;
