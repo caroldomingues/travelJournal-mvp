@@ -2,11 +2,6 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 
-// /* GET users listing. */
-// router.get("/", function (req, res, next) {
-//   res.send("respond with a resource");
-// });
-
 // GET entry list
 router.get("/", function (req, res, next) {
   db("SELECT * FROM entry;")
@@ -29,13 +24,15 @@ router.get("/:id", function (req, res, next) {
 // INSERT a new entry into the DB
 router.post("/", function (req, res, next) {
   //your code here
-  const { firstname } = req.body;
-  const { lastname } = req.body;
+  const { destination } = req.body;
+  const { day } = req.body;
+  const { description } = req.body;
+  const { img_url } = req.body;
   db(
-    `INSERT INTO entry (firstname, lastname) VALUES ("${firstname}", "${lastname}");`
+    `INSERT INTO entry (destination, day, description, img_url) VALUES ("${destination}", "${day}", "${description}", "${img_url}");`
   )
     .then((results) => {
-      res.send(results.data);
+      res.status(201).send({ message: "New entry created correctly" });
     })
     .catch((err) => res.status(500).send(err));
 });
@@ -45,7 +42,7 @@ router.delete("/:id", function (req, res, next) {
   //your code here
   db(`DELETE FROM entry WHERE id = ${req.params.id};`)
     .then((results) => {
-      res.send(results.data);
+      res.send({ message: "Entry was deleted successfully" });
     })
     .catch((err) => res.status(500).send(err));
 });
