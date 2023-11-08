@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 export default function Entries() {
   const [entries, setEntries] = useState([]);
+  let [entry, setEntry] = useState([
+    { destination: "", day: "", description: "", img_url: "" },
+  ]);
 
   useEffect(() => {
     getEntries();
@@ -13,6 +16,25 @@ export default function Entries() {
     const response = await fetch("/api/users");
     const data = await response.json();
     setEntries(data);
+    console.log(data);
+  }
+
+  async function deleteEntry(id) {
+    console.log(id);
+    try {
+      const response = await fetch(`/api/users/${id}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      console.log(data);
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+      getEntries();
+    } catch (err) {
+      console.log(err);
+    }
+    console.log("hi");
   }
 
   return (
@@ -28,6 +50,7 @@ export default function Entries() {
                 <img width={600} src={e.img_url} />
               </div>
             </Link>
+            <button onClick={() => deleteEntry(e.id)}>Delete</button>
             {/* i want to be able to display
             as many images as the person submits, but how do i do that? cause
             the entry is an object so i cant map through it to get an image to

@@ -33,8 +33,7 @@ export default function Entry() {
       <p>{entry[0].description}</p>
       <img width={700} src={entry[0].img_url} />
       <Link to={`/entries/`}>
-        {" "}
-        <button>Entries</button>
+        <button>Back to entries</button>
       </Link>
     </div>
   );
