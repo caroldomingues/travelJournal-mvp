@@ -3,24 +3,29 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
-  const [entry, setEntry] = useState([]);
+  let [entry, setEntry] = useState([
+    { destination: "", day: "", description: "", img_url: "" },
+  ]);
 
   function handleInputChange(event) {
-    setEntry(event.target.value);
-    console.log(entry);
+    const { name, value } = event.target;
+    setEntry((entry) => ({ ...entry, [name]: value }));
   }
+
+  console.log(entry);
 
   async function addEntry(e) {
     e.preventDefault();
     try {
-      const response = fetch("/api/users", {
+      const response = await fetch("/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(student),
+        body: JSON.stringify(entry),
       });
-      const data = (await response).json();
+      const data = await response.json();
+      console.log(data);
       if (!response.ok) throw new Error(data.message);
       //can i show the message from the backend here?
     } catch (err) {
@@ -31,7 +36,7 @@ export default function HomePage() {
   return (
     <div>
       <h2>Add a new entry!</h2>
-      <form>
+      <form onSubmit={addEntry}>
         <label>Where are you?</label>
         <input
           type="text"
@@ -60,7 +65,7 @@ export default function HomePage() {
         <input
           type="text"
           value={entry.img_url}
-          name="img"
+          name="img_url"
           onChange={handleInputChange}
         />
 
