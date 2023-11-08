@@ -1,12 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./Entries.css";
 
 export default function Entries() {
   const [entries, setEntries] = useState([]);
-  let [entry, setEntry] = useState([
-    { destination: "", day: "", description: "", img_url: "" },
-  ]);
 
   useEffect(() => {
     getEntries();
@@ -16,11 +14,9 @@ export default function Entries() {
     const response = await fetch("/api/users");
     const data = await response.json();
     setEntries(data);
-    console.log(data);
   }
 
   async function deleteEntry(id) {
-    console.log(id);
     try {
       const response = await fetch(`/api/users/${id}`, {
         method: "DELETE",
@@ -34,23 +30,23 @@ export default function Entries() {
     } catch (err) {
       console.log(err);
     }
-    console.log("hi");
   }
 
   return (
     <div>
-      <h1>My travel journal!</h1>
-      <div>Entries!</div>
-      <div>
+      <h2>Entries</h2>
+      <div class="row">
         {entries.map((e) => (
-          <div key={e.id}>
-            <Link to={`/entries/${e.id}`}>
-              <div>
-                <h3>{`${e.destination}`}</h3>
-                <img width={600} src={e.img_url} />
-              </div>
-            </Link>
-            <button onClick={() => deleteEntry(e.id)}>Delete</button>
+          <div key={e.id} class="col-sm-6">
+            <div class="aroundTheEntries">
+              <Link to={`/entries/${e.id}`}>
+                <div>
+                  <h3>{`${e.destination}`}</h3>
+                  <img width={600} src={e.img_url} />
+                </div>
+              </Link>
+              <button onClick={() => deleteEntry(e.id)}>Delete</button>
+            </div>
             {/* i want to be able to display
             as many images as the person submits, but how do i do that? cause
             the entry is an object so i cant map through it to get an image to

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./HomePage.css";
 
 export default function HomePage() {
   let [entry, setEntry] = useState([
@@ -8,7 +9,7 @@ export default function HomePage() {
   ]);
 
   function handleInputChange(event) {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
     setEntry((entry) => ({ ...entry, [name]: value }));
   }
 
@@ -35,26 +36,32 @@ export default function HomePage() {
 
   return (
     <div>
+      <h1>My travel journal!</h1>
       <h2>Add a new entry!</h2>
-      <form onSubmit={addEntry}>
-        <label>Where are you?</label>
+      <form class="form" onSubmit={addEntry}>
+        <label>Location</label>
         <input
+          class="form-control"
           type="text"
           value={entry.destination}
           name="destination"
           onChange={handleInputChange}
+          placeholder="What city are you in..."
         />
 
-        <label>What did you do?</label>
+        <label>Description</label>
         <input
+          class="form-control"
           type="text"
           value={entry.description}
           name="description"
           onChange={handleInputChange}
+          placeholder="What did you do? Did you see anything interesting?"
         />
 
-        <label>What is the date?</label>
+        <label>Date</label>
         <input
+          class="form-control"
           type="date"
           value={entry.day}
           name="day"
@@ -63,13 +70,16 @@ export default function HomePage() {
 
         <label>Share a picture</label>
         <input
+          class="form-control"
           type="text"
           value={entry.img_url}
           name="img_url"
           onChange={handleInputChange}
+          placeholder="Something you want to remember"
         />
-
-        <button>Submit entry</button>
+        <div class="submitButton">
+          <button>Submit entry</button>
+        </div>
       </form>
       <Link to={"/entries"}>
         <button>Entries</button>

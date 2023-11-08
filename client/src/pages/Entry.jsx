@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./Entry.css";
 
 export default function Entry() {
   const [entry, setEntry] = useState([
