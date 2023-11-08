@@ -12,7 +12,6 @@ export default function Entries() {
   async function getEntries() {
     const response = await fetch("/api/users");
     const data = await response.json();
-
     setEntries(data);
   }
 
@@ -22,11 +21,20 @@ export default function Entries() {
       <div>
         {entries.map((e) => (
           <div key={e.id}>
-            <h3>{`${e.destination}`}</h3>
-            <img width={600} src={e.img_url} />
+            <Link to={`/entries/${e.id}`}>
+              <div>
+                <h3>{`${e.destination}`}</h3>
+                <img width={600} src={e.img_url} />
+              </div>
+            </Link>
+            {/* i want to be able to display
+            as many images as the person submits, but how do i do that? cause
+            the entry is an object so i cant map through it to get an image to
+            show for every img_url, so is there another way for me to do this? */}
           </div>
         ))}
       </div>
+      <Outlet />
     </div>
   );
 }
