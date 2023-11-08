@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Entries() {
   const [entries, setEntries] = useState([]);
@@ -17,6 +17,7 @@ export default function Entries() {
 
   return (
     <div>
+      <h1>My travel journal!</h1>
       <div>Entries!</div>
       <div>
         {entries.map((e) => (
@@ -34,7 +35,7 @@ export default function Entries() {
           </div>
         ))}
       </div>
-      <Outlet />
+      {/* <Outlet /> */}
     </div>
   );
 }

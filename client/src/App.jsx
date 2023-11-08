@@ -8,13 +8,10 @@ import Entry from "./pages/Entry";
 function App() {
   return (
     <>
-      <h1>My travel journal!</h1>
-
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/entries" element={<Entries />}>
-          <Route path="/entries/:id" element={<Entry />} />
-        </Route>
+        <Route path="/entries" element={<Entries />} />
+        <Route path="/entries/:id" element={<Entry />} />
       </Routes>
     </>
   );
