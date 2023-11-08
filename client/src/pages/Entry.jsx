@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function Entry() {
   const [entry, setEntry] = useState([
     { destination: "", day: "", description: "", img_url: "" },
-  ]); //i want to put an actual loading thingy instead of default values, is thta possible?
+  ]); //i want to put an actual loading thingy instead of default values, is that possible?
   const { id } = useParams();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Entry() {
       <img width={700} src={entry[0].img_url} />
       <Link to={`/entries/`}>
         {" "}
-        <button>Entries page</button>
+        <button>Entries</button>
       </Link>
     </div>
   );

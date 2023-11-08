@@ -35,6 +35,10 @@ export default function Entries() {
           </div>
         ))}
       </div>
+      <Link to={"/"}>
+        <button>Add an entry!</button>
+      </Link>
+
       {/* <Outlet /> */}
     </div>
   );
