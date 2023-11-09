@@ -5,8 +5,9 @@ import "./HomePage.css";
 
 export default function HomePage() {
   let [entry, setEntry] = useState([
-    { destination: "", day: "", description: "", img_url: "" },
+    { city_id: "", date: "", description: "", imgUrl: "" },
   ]);
+  let [city, setCity] = useState([{ city: "" }]);
 
   function handleInputChange(event) {
     let { name, value } = event.target;
@@ -14,6 +15,26 @@ export default function HomePage() {
   }
 
   console.log(entry);
+
+  async function addCity(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/users/cities", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(entry),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (!response.ok) throw new Error(data.message);
+      setCity({ city: "" });
+      //can i show the message from the backend here?
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   async function addEntry(e) {
     e.preventDefault();
@@ -28,7 +49,7 @@ export default function HomePage() {
       const data = await response.json();
       console.log(data);
       if (!response.ok) throw new Error(data.message);
-      setEntry({ destination: "", day: "", description: "", img_url: "" });
+      setEntry({ city_id: "", date: "", description: "", imgUrl: "" });
       //can i show the message from the backend here?
     } catch (err) {
       console.log(err);
@@ -50,7 +71,7 @@ export default function HomePage() {
             <input
               class="form-control"
               type="text"
-              value={entry.destination}
+              value={entry.city_id}
               name="destination"
               onChange={handleInputChange}
               placeholder="What city are you in..."
@@ -68,7 +89,7 @@ export default function HomePage() {
             <input
               class="form-control"
               type="date"
-              value={entry.day}
+              value={entry.date}
               name="day"
               onChange={handleInputChange}
             />
@@ -76,7 +97,7 @@ export default function HomePage() {
             <input
               class="form-control"
               type="text"
-              value={entry.img_url}
+              value={entry.imgUrl}
               name="img_url"
               onChange={handleInputChange}
               placeholder="Something you want to remember"

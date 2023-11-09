@@ -27,10 +27,10 @@ CREATE TABLE cities (
 
 CREATE TABLE entries (
     id INT NOT NULL AUTO_INCREMENT,
-    city_name VARCHAR(255) NOT NULL,
+    city_id INT,
     date DATE NOT NULL,
     description MEDIUMTEXT NOT NULL,
     imgUrl VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (city_name) REFERENCES cities(city)
+    FOREIGN KEY (city_id) REFERENCES cities(id)
 );

@@ -46,12 +46,12 @@ router.get("cities/:id", function (req, res, next) {
 // INSERT a new entry into the DB
 router.post("/", function (req, res, next) {
   //your code here
-  const { city_name } = req.body;
+  const { city_id } = req.body;
   const { date } = req.body;
   const { description } = req.body;
   const { imgUrl } = req.body;
   db(
-    `INSERT INTO entries (city_name, date, description, imgUrl) VALUES ("${city_name}", "${date}", "${description}", "${imgUrl}");`
+    `INSERT INTO entries (city_name, date, description, imgUrl) VALUES ("${city_id}", "${date}", "${description}", "${imgUrl}");`
   )
     .then((results) => {
       res.status(201).send({ message: "New entry created correctly" });

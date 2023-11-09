@@ -31,7 +31,7 @@ export default function Entries() {
                     src={e.img_url}
                   />
                   <div className="card-img-overlay">
-                    <h3 className="linkStyles">{`${e.city_name}`}</h3>
+                    <h3 className="linkStyles">{`${e.city_id}`}</h3>
                   </div>
                 </div>
                 {/* i want to be able to display
