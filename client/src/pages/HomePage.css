@@ -1,10 +1,12 @@
-body {
+.bodyOfHomePage {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+  background-color: e7eaf6;
 }
 
 form {
-  margin: 10px 60px;
+  margin: 10px 50px;
 }
 
 .submitButton {
@@ -14,4 +16,14 @@ form {
 button {
   padding: 3px 8px;
   border-radius: 10px;
+}
+
+.insideTheFormDiv {
+  border: 4px solid;
+  border-color: #113f67;
+  border-radius: 10px;
+  margin: 10px 100px;
+}
+.insideTheFormDivDiv {
+  padding: 10px 15px 20px 15px;
 }

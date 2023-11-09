@@ -35,52 +35,57 @@ export default function HomePage() {
   }
 
   return (
-    <div>
-      <h1>My travel journal!</h1>
-      <h2>Add a new entry!</h2>
+    <div class="bodyOfHomePage">
+      <h1>my travel journal</h1>
+
+      <h2>add a new entry:</h2>
+
       <form class="form" onSubmit={addEntry}>
-        <label>Location</label>
-        <input
-          class="form-control"
-          type="text"
-          value={entry.destination}
-          name="destination"
-          onChange={handleInputChange}
-          placeholder="What city are you in..."
-        />
+        <div className="insideTheFormDiv">
+          <div className="insideTheFormDivDiv">
+            <label>Location</label>
+            <input
+              class="form-control"
+              type="text"
+              value={entry.destination}
+              name="destination"
+              onChange={handleInputChange}
+              placeholder="What city are you in..."
+            />
+            <label>Description</label>
+            <input
+              class="form-control"
+              type="text"
+              value={entry.description}
+              name="description"
+              onChange={handleInputChange}
+              placeholder="What did you do? Did you see anything interesting?"
+            />
+            <label>Date</label>
+            <input
+              class="form-control"
+              type="date"
+              value={entry.day}
+              name="day"
+              onChange={handleInputChange}
+            />
+            <label>Share a picture</label>
+            <input
+              class="form-control"
+              type="text"
+              value={entry.img_url}
+              name="img_url"
+              onChange={handleInputChange}
+              placeholder="Something you want to remember"
+            />
+          </div>
+        </div>
 
-        <label>Description</label>
-        <input
-          class="form-control"
-          type="text"
-          value={entry.description}
-          name="description"
-          onChange={handleInputChange}
-          placeholder="What did you do? Did you see anything interesting?"
-        />
-
-        <label>Date</label>
-        <input
-          class="form-control"
-          type="date"
-          value={entry.day}
-          name="day"
-          onChange={handleInputChange}
-        />
-
-        <label>Share a picture</label>
-        <input
-          class="form-control"
-          type="text"
-          value={entry.img_url}
-          name="img_url"
-          onChange={handleInputChange}
-          placeholder="Something you want to remember"
-        />
         <div class="submitButton">
-          <button>Submit entry</button>
+          <button>Submit</button>
         </div>
       </form>
+
       <Link to={"/entries"}>
         <button>Entries</button>
       </Link>

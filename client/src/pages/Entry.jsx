@@ -27,14 +27,36 @@ export default function Entry() {
     // }
   }
 
+  async function deleteEntry(id) {
+    try {
+      const response = await fetch(`/api/users/${id}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+      getEntries();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
-    <div>
+    <div className="bodyOfEntry">
       <h2>{entry[0].destination}</h2>
       <div>{entry[0].day}</div>
-      <p>{entry[0].description}</p>
-      <img width={700} src={entry[0].img_url} />
+
+      <p className="descriptionStyling">{entry[0].description}</p>
+
+      <div>
+        {" "}
+        <img src={entry[0].img_url} />
+      </div>
+
       <Link to={`/entries/`}>
         <button>Back to entries</button>
+        <button onClick={() => deleteEntry(entry[0].id)}>Delete</button>
       </Link>
     </div>
   );
