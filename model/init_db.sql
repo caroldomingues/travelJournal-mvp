@@ -18,18 +18,19 @@ SET foreign_key_checks = 1;
 --     img_url VARCHAR(255) not null,
 --     );
 
-    CREATE TABLE entries(
+CREATE TABLE entries (
     id INT NOT NULL AUTO_INCREMENT,
     city VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_city (city) 
 );
-CREATE TABLE city(
+
+CREATE TABLE city (
     id INT NOT NULL AUTO_INCREMENT,
-    city VARCHAR(255) NOT NULL,
+    city_name VARCHAR(255) NOT NULL,
     date DATE NOT NULL,
     description MEDIUMTEXT NOT NULL,
     imgUrl VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (city_name) REFERENCES entries(city)
 );
-ALTER TABLE
-    city ADD CONSTRAINT city_city_foreign FOREIGN KEY(city) REFERENCES entries(city);
