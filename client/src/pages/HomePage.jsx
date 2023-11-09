@@ -92,9 +92,6 @@ export default function HomePage() {
       <Link to={"/entries"}>
         <button className="buttonStyling">Entries</button>
       </Link>
-      {/* <div>
-        <img src="https://images.vexels.com/media/users/3/128176/isolated/preview/4086178bba7e381b9324267248ac78f8-icono-de-viaje-de-puntero-de-ubicacion.png" />
-      </div> */}
     </div>
   );
 }

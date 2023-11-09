@@ -6,7 +6,7 @@ import "./Entry.css";
 
 export default function Entry() {
   const [entry, setEntry] = useState([
-    { destination: "", day: "", description: "", img_url: "" },
+    { city_name: "", date: "", description: "", imgUrl: "" },
   ]); //i want to put an actual loading thingy instead of default values, is that possible?
   const { id } = useParams();
 
@@ -44,14 +44,14 @@ export default function Entry() {
 
   return (
     <div className="bodyOfEntry">
-      <h2>{entry[0].destination}</h2>
+      <h2>{entry[0].city_name}</h2>
 
-      <div>{entry[0].day}</div>
+      <div>{entry[0].date}</div>
       <div className="smth"></div>
       <p className="descriptionStyling">{entry[0].description}</p>
       <div className="smth"></div>
       <div>
-        <img className="imgAtEntry" src={entry[0].img_url} />
+        <img className="imgAtEntry" src={entry[0].imgUrl} />
       </div>
 
       <Link to={`/entries/`}>
