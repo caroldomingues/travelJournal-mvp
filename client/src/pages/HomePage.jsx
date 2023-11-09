@@ -28,6 +28,7 @@ export default function HomePage() {
       const data = await response.json();
       console.log(data);
       if (!response.ok) throw new Error(data.message);
+      setEntry({ destination: "", day: "", description: "", img_url: "" });
       //can i show the message from the backend here?
     } catch (err) {
       console.log(err);

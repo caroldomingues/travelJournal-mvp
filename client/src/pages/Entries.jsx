@@ -22,10 +22,14 @@ export default function Entries() {
       <div className="aroudAllEntries">
         <div class="row">
           {entries.map((e) => (
-            <div key={e.id} class="col-sm-6">
+            <div key={e.id} class="col-sm-3">
               <Link to={`/entries/${e.id}`} className="linkStyles">
                 <div class="card text-bg">
-                  <img width={600} src={e.img_url} />
+                  <img
+                    className="imgStylingAtEntry"
+                    width={600}
+                    src={e.img_url}
+                  />
                   <div className="card-img-overlay">
                     <h3 className="linkStyles">{`${e.destination}`}</h3>
                   </div>

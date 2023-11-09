@@ -51,7 +51,6 @@ export default function Entry() {
       <p className="descriptionStyling">{entry[0].description}</p>
       <div className="smth"></div>
       <div>
-        {" "}
         <img className="imgAtEntry" src={entry[0].img_url} />
       </div>
 
