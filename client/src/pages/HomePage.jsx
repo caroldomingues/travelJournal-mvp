@@ -36,7 +36,9 @@ export default function HomePage() {
 
   return (
     <div class="bodyOfHomePage">
-      <h1>my travel journal</h1>
+      <h1>
+        my travel journal <i class="fa-solid fa-earth-americas"></i>
+      </h1>
 
       <h2>add a new entry:</h2>
 
@@ -81,14 +83,17 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div class="submitButton">
-          <button>Submit</button>
-        </div>
+        <button className="buttonStyling">
+          Submit <i class="fa-regular fa-paper-plane"></i>
+        </button>
       </form>
 
       <Link to={"/entries"}>
-        <button>Entries</button>
+        <button className="buttonStyling">Entries</button>
       </Link>
+      {/* <div>
+        <img src="https://images.vexels.com/media/users/3/128176/isolated/preview/4086178bba7e381b9324267248ac78f8-icono-de-viaje-de-puntero-de-ubicacion.png" />
+      </div> */}
     </div>
   );
 }

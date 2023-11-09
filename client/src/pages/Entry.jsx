@@ -45,18 +45,21 @@ export default function Entry() {
   return (
     <div className="bodyOfEntry">
       <h2>{entry[0].destination}</h2>
+
       <div>{entry[0].day}</div>
-
+      <div className="smth"></div>
       <p className="descriptionStyling">{entry[0].description}</p>
-
+      <div className="smth"></div>
       <div>
         {" "}
-        <img src={entry[0].img_url} />
+        <img className="imgAtEntry" src={entry[0].img_url} />
       </div>
 
       <Link to={`/entries/`}>
         <button>Back to entries</button>
-        <button onClick={() => deleteEntry(entry[0].id)}>Delete</button>
+        <button onClick={() => deleteEntry(entry[0].id)}>
+          <i class="fa-solid fa-trash"></i>
+        </button>
       </Link>
     </div>
   );

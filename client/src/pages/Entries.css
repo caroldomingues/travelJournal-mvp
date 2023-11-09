@@ -1,7 +1,20 @@
 .bodyOfEntries {
+  padding: 5px 0px;
   text-align: center;
 }
 
+.theH1 {
+  color: #6570c1;
+  text-shadow: 1px 1px 2px #a0cbf0, 0 0 1em #8e94c0, 0 0 0.2em #ffffff;
+}
+img {
+  max-width: 100%;
+  max-height: fit-content;
+  margin: auto;
+  border: 5px solid;
+  border-radius: 9px;
+  border-color: #a2a8d3;
+}
 button {
   padding: 3px 8px;
   border-radius: 10px;
@@ -23,6 +36,7 @@ button {
 }
 
 .linkStyles {
+  text-shadow: 1px 1px 2px #2a5172, 0 0 1em #283dd9, 0 0 0.2em #7980b5;
   text-decoration: none;
   color: #afb7f7;
   font-family: Arial;
