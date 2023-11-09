@@ -23,7 +23,7 @@ router.get("/cities", function (req, res, next) {
 // GET one entry
 router.get("/:id", function (req, res, next) {
   //your code here
-  db(`SELECT * FROM entry WHERE id = ${req.params.id} ;`)
+  db(`SELECT * FROM entries WHERE id = ${req.params.id} ;`)
     .then((results) => {
       res.send(results.data);
     })
@@ -40,6 +40,9 @@ router.get("cities/:id", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
+// ok so apparently i can only an entry(city) into the entries table when that city has already been added to the cities table
+// is that supposed to happen? do i want that to happen?
+
 // INSERT a new entry into the DB
 router.post("/", function (req, res, next) {
   //your code here
@@ -48,7 +51,7 @@ router.post("/", function (req, res, next) {
   const { description } = req.body;
   const { imgUrl } = req.body;
   db(
-    `INSERT INTO entry (destination, day, description, img_url) VALUES ("${city_name}", "${date}", "${description}", "${imgUrl}");`
+    `INSERT INTO entries (city_name, date, description, imgUrl) VALUES ("${city_name}", "${date}", "${description}", "${imgUrl}");`
   )
     .then((results) => {
       res.status(201).send({ message: "New entry created correctly" });
@@ -70,7 +73,7 @@ router.post("/cities", function (req, res, next) {
 // DELETE a entry from the DB
 router.delete("/:id", function (req, res, next) {
   //your code here
-  db(`DELETE FROM entry WHERE id = ${req.params.id};`)
+  db(`DELETE FROM entries WHERE id = ${req.params.id};`)
     .then((results) => {
       res.send({ message: "Entry was deleted successfully" });
     })
