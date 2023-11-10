@@ -47,19 +47,27 @@ router.get("cities/:id", function (req, res, next) {
 router.post("/", async function (req, res, next) {
   //your code here
   const { city } = req.body;
-  const { city_id } = req.body;
+  let { city_id } = req.body;
   const { date } = req.body;
   const { description } = req.body;
   const { imgUrl } = req.body;
 
   try {
-    //is the city_id === 0? if so, then add that city (from the entries), as a new value for city in cities
-    if (entry.city_id === 0) {
-      const answer = await db(`INSERT INTO cities (city) VALUES ("${city}");`);
+    if (city_id === "0") {
+      // res.send(city_id);
+      await db(`INSERT INTO cities (city) VALUES ("${city}");`);
+      // res.send(answer);
+      const response = await db(
+        `SELECT id FROM cities ORDER BY id DESC LIMIT 1;`
+      );
+      // console.log(response.data[0].id);
+      //override the city_id from the params with the new city_id that was created
+      city_id = response.data[0].id;
+      // res.send(city_id);
       res.status(201).send({ message: "New city added correctly" });
     }
     //happy path
-    const results = await db(
+    await db(
       `INSERT INTO entries (city_id, date, description, imgUrl) VALUES ("${city_id}", "${date}", "${description}", "${imgUrl}");`
     );
     res.status(201).send({ message: "New entry created correctly" });
