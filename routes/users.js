@@ -51,8 +51,8 @@ router.post("/", async function (req, res, next) {
   const { date } = req.body;
   const { description } = req.body;
   const { imgUrl } = req.body;
-
   try {
+    //i have no idea why this works but ok slay im happy
     if (city_id === "0") {
       // res.send(city_id);
       await db(`INSERT INTO cities (city) VALUES ("${city}");`);

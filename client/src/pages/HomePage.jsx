@@ -17,11 +17,12 @@ export default function HomePage() {
   function handleInputChange(event) {
     //does this working for matching the IDs ???
     let { name, value } = event.target;
-    setEntry((entry) => ({ ...entry, [name]: value }));
-
-    // setCities((cities) => ({ ...cities, [name]: value }));
+    setEntry({ ...entry, [name]: value });
+    console.log(entry);
+    console.log(cities);
   }
 
+  console.log(entry);
   function handleSubmit() {
     e.preventDefault();
     addEntry(e);
@@ -30,30 +31,30 @@ export default function HomePage() {
   async function getCities() {
     const response = await fetch("/api/users/cities");
     const data = await response.json();
-    // console.log(data);
-    // console.log(cities);
+    console.log(data);
+    console.log(cities);
     setCities(data);
   }
 
-  async function addCity(e) {
-    e.preventDefault();
-    try {
-      const response = await fetch("/api/users/cities", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(entry),
-      });
-      const data = await response.json();
-      console.log(data);
-      if (!response.ok) throw new Error(data.message);
-      setCity({ city: "" });
-      //can i show the message from the backend here?
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function addCity(e) {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch("/api/users/cities", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(entry),
+  //     });
+  //     const data = await response.json();
+  //     console.log(data);
+  //     if (!response.ok) throw new Error(data.message);
+  //     setCity({ city: "" });
+  //     //can i show the message from the backend here?
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   async function addEntry(e) {
     e.preventDefault();
@@ -63,12 +64,19 @@ export default function HomePage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(entry),
+        body: JSON.stringify(entry, cities),
       });
       const data = await response.json();
       console.log(data);
       if (!response.ok) throw new Error(data.message);
-      setEntry({ city_id: "", date: "", description: "", imgUrl: "" });
+      setEntry({
+        city_id: "",
+        date: "",
+        description: "",
+        imgUrl: "",
+        city: "",
+      });
+      setCities({ city: "" });
       //can i show the message from the backend here?
     } catch (err) {
       console.log(err);
@@ -76,7 +84,7 @@ export default function HomePage() {
   }
 
   return (
-    <div class="bodyOfHomePage">
+    <div className="bodyOfHomePage">
       <h1>
         my travel journal <i className="fa-solid fa-earth-americas"></i>
       </h1>
@@ -92,11 +100,9 @@ export default function HomePage() {
             <select
               value={entry.city_id}
               name="city_id"
-              //the dream would be to set the city_id in 'entries' to the same value as the city id in 'cities'
-              //how do i do that?
               onChange={handleInputChange}
             >
-              <option> Select a city </option>
+              <option> Select a city</option>
               {cities.map((c) => (
                 <option key={c.id} value={c.id}>
                   {c.city}
@@ -107,7 +113,7 @@ export default function HomePage() {
 
             {entry.city_id === "0" && (
               <input
-                class="form-control"
+                className="form-control"
                 type="text"
                 value={entry.city}
                 name="city"
@@ -118,7 +124,7 @@ export default function HomePage() {
             <br />
             <label>Description</label>
             <input
-              class="form-control"
+              className="form-control"
               type="text"
               value={entry.description}
               name="description"
@@ -127,7 +133,7 @@ export default function HomePage() {
             />
             <label>Date</label>
             <input
-              class="form-control"
+              className="form-control"
               type="date"
               value={entry.date}
               name="day"
@@ -135,7 +141,7 @@ export default function HomePage() {
             />
             <label>Share a picture</label>
             <input
-              class="form-control"
+              className="form-control"
               type="text"
               value={entry.imgUrl}
               name="img_url"
@@ -146,7 +152,7 @@ export default function HomePage() {
         </div>
 
         <button className="buttonStyling">
-          Submit <i class="fa-regular fa-paper-plane"></i>
+          Submit <i className="fa-regular fa-paper-plane"></i>
         </button>
       </form>
 
