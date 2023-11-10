@@ -5,16 +5,35 @@ import "./HomePage.css";
 
 export default function HomePage() {
   let [entry, setEntry] = useState([
-    { city_id: "", date: "", description: "", imgUrl: "" },
+    { city_id: "", date: "", description: "", imgUrl: "", city: "" },
   ]);
-  let [city, setCity] = useState([{ city: "" }]);
+  let [cities, setCities] = useState([{ city: "" }]);
+
+  useEffect(() => {
+    getCities();
+  }, []);
+  // useEffect(() => console.log(cities), [cities]);
 
   function handleInputChange(event) {
+    //does this working for matching the IDs ???
     let { name, value } = event.target;
     setEntry((entry) => ({ ...entry, [name]: value }));
+
+    // setCities((cities) => ({ ...cities, [name]: value }));
   }
 
-  console.log(entry);
+  function handleSubmit() {
+    e.preventDefault();
+    addEntry(e);
+  }
+
+  async function getCities() {
+    const response = await fetch("/api/users/cities");
+    const data = await response.json();
+    // console.log(data);
+    // console.log(cities);
+    setCities(data);
+  }
 
   async function addCity(e) {
     e.preventDefault();
@@ -59,23 +78,44 @@ export default function HomePage() {
   return (
     <div class="bodyOfHomePage">
       <h1>
-        my travel journal <i class="fa-solid fa-earth-americas"></i>
+        my travel journal <i className="fa-solid fa-earth-americas"></i>
       </h1>
 
       <h2>add a new entry:</h2>
 
-      <form class="form" onSubmit={addEntry}>
+      <form className="form" onSubmit={handleSubmit}>
+        {/* will this handleSubmit function work */}
         <div className="insideTheFormDiv">
           <div className="insideTheFormDivDiv">
             <label>Location</label>
-            <input
-              class="form-control"
-              type="text"
+            <br />
+            <select
               value={entry.city_id}
-              name="destination"
+              name="city_id"
+              //the dream would be to set the city_id in 'entries' to the same value as the city id in 'cities'
+              //how do i do that?
               onChange={handleInputChange}
-              placeholder="What city are you in..."
-            />
+            >
+              <option> Select a city </option>
+              {cities.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.city}
+                </option>
+              ))}
+              <option value={0}>Add a new city</option>
+            </select>
+
+            {entry.city_id === "0" && (
+              <input
+                class="form-control"
+                type="text"
+                value={entry.city}
+                name="city"
+                onChange={handleInputChange}
+                placeholder="What city are you in..."
+              />
+            )}
+            <br />
             <label>Description</label>
             <input
               class="form-control"

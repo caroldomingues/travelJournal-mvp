@@ -44,19 +44,28 @@ router.get("cities/:id", function (req, res, next) {
 // is that supposed to happen? do i want that to happen?
 
 // INSERT a new entry into the DB
-router.post("/", function (req, res, next) {
+router.post("/", async function (req, res, next) {
   //your code here
+  const { city } = req.body;
   const { city_id } = req.body;
   const { date } = req.body;
   const { description } = req.body;
   const { imgUrl } = req.body;
-  db(
-    `INSERT INTO entries (city_name, date, description, imgUrl) VALUES ("${city_id}", "${date}", "${description}", "${imgUrl}");`
-  )
-    .then((results) => {
-      res.status(201).send({ message: "New entry created correctly" });
-    })
-    .catch((err) => res.status(500).send(err));
+
+  try {
+    //is the city_id === 0? if so, then add that city (from the entries), as a new value for city in cities
+    if (entry.city_id === 0) {
+      const answer = await db(`INSERT INTO cities (city) VALUES ("${city}");`);
+      res.status(201).send({ message: "New city added correctly" });
+    }
+    //happy path
+    const results = await db(
+      `INSERT INTO entries (city_id, date, description, imgUrl) VALUES ("${city_id}", "${date}", "${description}", "${imgUrl}");`
+    );
+    res.status(201).send({ message: "New entry created correctly" });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 // INSERT a new city into the DB
