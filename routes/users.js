@@ -21,13 +21,16 @@ router.get("/cities", function (req, res, next) {
 });
 
 // GET one entry
-router.get("/:id", function (req, res, next) {
+router.get("/:id", async function (req, res, next) {
   //your code here
-  db(`SELECT * FROM entries WHERE id = ${req.params.id} ;`)
-    .then((results) => {
-      res.send(results.data);
-    })
-    .catch((err) => res.status(500).send(err));
+  try {
+    const results = await db(
+      `SELECT * FROM entries WHERE city_id = ${req.params.id} ;`
+    );
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 // GET one city

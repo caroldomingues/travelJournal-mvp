@@ -10,6 +10,7 @@ export default function Entries() {
   useEffect(() => {
     getEntries();
     getCities();
+    // getTheNameOfTheCity();
   }, []);
 
   async function getEntries() {
@@ -24,42 +25,71 @@ export default function Entries() {
     setCities(data);
   }
 
-  function getTheNameOfTheCity() {
-    for (let c in cities) {
-      if (c.id === entry.city_id) {
-        return c;
-      }
-    }
-  }
+  // function getTheNameOfTheCity() {
+  //   console.log(cities);
+  //   console.log(entries);
+  //   for (let c of cities) {
+  //     for (let e of entries) {
+  //       if (c.id === e.city_id) {
+  //         console.log(c.city);
+  //         return c.city;
+  //       }
+  //     }
+  //   }
+  // }
 
+  // im very aware that this doest make any sense but idk how to make it make sense, i am very confused
   return (
     <div className="bodyOfEntries">
       <h1 className="theH1">entries:</h1>
       <div className="aroudAllEntries">
         <div class="row">
-          {entries.map((e) => (
-            <div key={e.id} class="col-sm-3">
-              <Link to={`/entries/${e.id}`} className="linkStyles">
+          {cities.map((c) => (
+            <div key={c.id} class="col-sm-3">
+              <Link to={`/entries/${c.id}`} className="linkStyles">
                 <div class="card text-bg">
-                  <img
-                    className="imgStylingAtEntry"
-                    width={600}
-                    src={e.imgUrl}
-                  />
                   <div className="card-img-overlay">
-                    <h3 className="linkStyles">{getTheNameOfTheCity}</h3>
+                    <h3 className="linkStyles">{c.city}</h3>
                   </div>
                 </div>
               </Link>
             </div>
           ))}
+          {/* {entries.map((e) => (
+            <div key={e.id} class="col-sm-3">
+              <Link to={`/entries/${e.id}`} className="linkStyles">
+                <div class="card text-bg">
+                  <img
+                    className="imgStylingAtEntry"
+                    width={300}
+                    height={200}
+                    src={e.imgUrl}
+                  />
+                  <div className="card-img-overlay">
+                    {cities.map((c) => (
+                      <h3 className="linkStyles">{c.city}</h3>
+                    ))}
+                  </div>
+                 
+                </div>
+              </Link>
+            </div>
+          ))} */}
         </div>
       </div>
       <Link to={"/"}>
         <button>Add a new entry!</button>
       </Link>
-
       {/* <Outlet /> */}
     </div>
   );
+}
+{
+  /* <div className="card-img-overlay">
+                    {cities.map((c) => (
+                      {e.city_id === c.id &&  <h3 className="linkStyles">
+                      {c.city}
+                      </h3>}
+                    ))}
+                  </div> */
 }
