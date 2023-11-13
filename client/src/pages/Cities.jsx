@@ -10,7 +10,6 @@ export default function Entries() {
   useEffect(() => {
     getEntries();
     getCities();
-    // getTheNameOfTheCity();
   }, []);
 
   async function getEntries() {

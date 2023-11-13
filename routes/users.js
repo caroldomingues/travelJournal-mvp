@@ -3,12 +3,37 @@ var router = express.Router();
 const db = require("../model/helper");
 
 // GET entries list
-router.get("/", function (req, res, next) {
-  db("SELECT * FROM entries;")
-    .then((results) => {
-      res.send(results.data);
-    })
-    .catch((err) => res.status(500).send(err));
+router.get("/", async function (req, res, next) {
+  const { id } = req.params;
+  try {
+    const results = await db(
+      //oop this is wrong, help
+      `SELECT
+  cities.id,
+  cities.city,
+  MIN(entries.date) AS minDate,
+  MIN(entries.description),
+  MIN(entries.imgUrl)
+FROM
+  cities
+LEFT JOIN
+  entries ON cities.id = entries.city_id
+WHERE
+  cities.id = entries.city_id
+GROUP BY
+  cities.id, cities.city
+ORDER BY
+  minDate;`
+    );
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+  // db("SELECT * FROM entries;")
+  //   .then((results) => {
+  //     res.send(results.data);
+  //   })
+  //   .catch((err) => res.status(500).send(err));
 });
 
 // GET cities list
@@ -54,6 +79,35 @@ router.get("/cities/:id/entries", async function (req, res, next) {
     LEFT JOIN entries ON cities.id = entries.city_id
     WHERE cities.id = ${id}
     ORDER BY entries.date;`
+    );
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// GET the last entry of EVERY city
+router.get("/cities/entries", async function (req, res, next) {
+  const { id } = req.params;
+  try {
+    const results = await db(
+      //oop this is wrong, help
+      `SELECT
+  cities.id,
+  cities.city,
+  MIN(entries.date) AS minDate,
+  MIN(entries.description),
+  MIN(entries.imgUrl)
+FROM
+  cities
+LEFT JOIN
+  entries ON cities.id = entries.city_id
+WHERE
+  cities.id = entries.city_id
+GROUP BY
+  cities.id, cities.city
+ORDER BY
+  minDate;`
     );
     res.send(results.data);
   } catch (err) {
