@@ -13,9 +13,13 @@ form {
   margin: 10px;
 }
 
-button {
+.buttonStyling {
   padding: 3px 8px;
   border-radius: 10px;
+  background-color: #a7b99e;
+  color: black;
+  border-color: black;
+  border: 2px solid;
 }
 
 .insideTheFormDiv {

@@ -15,9 +15,19 @@
   border-radius: 9px;
   border-color: #a2a8d3;
 }
-button {
+
+.imgStyle {
+  width: 400px;
+  height: 200px;
+}
+
+.buttonStyle {
   padding: 3px 8px;
   border-radius: 10px;
+  background-color: #a7b99e;
+  color: aliceblue;
+  border-color: #cedcc3;
+  border: 2px solid;
 }
 .aroundTheEntries {
   border: 4px solid;

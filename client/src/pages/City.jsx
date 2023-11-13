@@ -75,8 +75,11 @@ export default function Entry() {
         ))}
       </div>
       <Link to={`/cities/`}>
-        <button>Back to cities</button>
-        <button onClick={() => deleteEntry(entry[0].id)}>
+        <button className="theButtonStyle">Back to cities</button>
+        <button
+          className="theButtonStyle"
+          onClick={() => deleteEntry(entry[0].id)}
+        >
           <i className="fa-solid fa-trash"></i>
         </button>
       </Link>{" "}
