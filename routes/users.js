@@ -46,6 +46,7 @@ router.get("cities/:id", function (req, res, next) {
 // INSERT a new entry into the DB
 router.post("/", async function (req, res, next) {
   //your code here
+  console.log(req.body);
   const { city } = req.body;
   let { city_id } = req.body;
   const { date } = req.body;

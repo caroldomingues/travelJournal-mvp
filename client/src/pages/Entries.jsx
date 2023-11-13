@@ -5,15 +5,31 @@ import "./Entries.css";
 
 export default function Entries() {
   const [entries, setEntries] = useState([]);
+  let [cities, setCities] = useState([]);
 
   useEffect(() => {
     getEntries();
+    getCities();
   }, []);
 
   async function getEntries() {
     const response = await fetch("/api/users");
     const data = await response.json();
     setEntries(data);
+  }
+
+  async function getCities() {
+    const response = await fetch("/api/users/cities");
+    const data = await response.json();
+    setCities(data);
+  }
+
+  function getTheNameOfTheCity() {
+    for (let c in cities) {
+      if (c.id === entry.city_id) {
+        return c;
+      }
+    }
   }
 
   return (
@@ -28,16 +44,12 @@ export default function Entries() {
                   <img
                     className="imgStylingAtEntry"
                     width={600}
-                    src={e.img_url}
+                    src={e.imgUrl}
                   />
                   <div className="card-img-overlay">
-                    <h3 className="linkStyles">{`${e.city_id}`}</h3>
+                    <h3 className="linkStyles">{getTheNameOfTheCity}</h3>
                   </div>
                 </div>
-                {/* i want to be able to display
-            as many images as the person submits, but how do i do that? cause
-            the entry is an object so i cant map through it to get an image to
-            show for every img_url, so is there another way for me to do this? */}
               </Link>
             </div>
           ))}

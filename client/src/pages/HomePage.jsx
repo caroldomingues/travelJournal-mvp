@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import "./HomePage.css";
 
 export default function HomePage() {
-  let [entry, setEntry] = useState([
-    { city_id: "", date: "", description: "", imgUrl: "", city: "" },
-  ]);
+  let [entry, setEntry] = useState({
+    city_id: "",
+    date: "",
+    description: "",
+    imgUrl: "",
+    city: "",
+  });
   let [cities, setCities] = useState([{ city: "" }]);
 
   useEffect(() => {
@@ -18,12 +22,9 @@ export default function HomePage() {
     //does this working for matching the IDs ???
     let { name, value } = event.target;
     setEntry({ ...entry, [name]: value });
-    console.log(entry);
-    console.log(cities);
   }
 
-  console.log(entry);
-  function handleSubmit() {
+  function handleSubmit(e) {
     e.preventDefault();
     addEntry(e);
   }
@@ -31,8 +32,6 @@ export default function HomePage() {
   async function getCities() {
     const response = await fetch("/api/users/cities");
     const data = await response.json();
-    console.log(data);
-    console.log(cities);
     setCities(data);
   }
 
@@ -57,17 +56,17 @@ export default function HomePage() {
   // }
 
   async function addEntry(e) {
-    e.preventDefault();
+    // e.preventDefault();
+
     try {
       const response = await fetch("/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(entry, cities),
+        body: JSON.stringify(entry),
       });
       const data = await response.json();
-      console.log(data);
       if (!response.ok) throw new Error(data.message);
       setEntry({
         city_id: "",
@@ -76,7 +75,6 @@ export default function HomePage() {
         imgUrl: "",
         city: "",
       });
-      setCities({ city: "" });
       //can i show the message from the backend here?
     } catch (err) {
       console.log(err);
@@ -136,7 +134,7 @@ export default function HomePage() {
               className="form-control"
               type="date"
               value={entry.date}
-              name="day"
+              name="date"
               onChange={handleInputChange}
             />
             <label>Share a picture</label>
@@ -144,7 +142,7 @@ export default function HomePage() {
               className="form-control"
               type="text"
               value={entry.imgUrl}
-              name="img_url"
+              name="imgUrl"
               onChange={handleInputChange}
               placeholder="Something you want to remember"
             />
