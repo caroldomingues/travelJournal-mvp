@@ -59,14 +59,20 @@ export default function Entry() {
       <h1>{city[0].city}</h1>
       <div>
         <br />
-        <div className="singleEntry">
-          <div className="dateAtEntry">{entry[0].date}</div>
-          <p className="descriptionStyling">{entry[0].description}</p>
-          <div className="smth"></div>
+        {entry.map((e) => (
           <div>
-            <img className="imgAtEntry" src={entry[0].imgUrl} />
+            {" "}
+            <div className="singleEntry">
+              <div className="dateAtEntry">{e.date}</div>
+              <p className="descriptionStyling">{e.description}</p>
+              <div className="smth"></div>
+              <div>
+                <img className="imgAtEntry" src={e.imgUrl} />
+              </div>
+            </div>
+            <br />
           </div>
-        </div>
+        ))}
       </div>
       <Link to={`/cities/`}>
         <button>Back to cities</button>
