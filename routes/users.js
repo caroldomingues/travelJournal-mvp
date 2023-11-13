@@ -34,17 +34,32 @@ router.get("/:id", async function (req, res, next) {
 });
 
 // GET one city
-router.get("cities/:id", function (req, res, next) {
+router.get("/cities/:id", function (req, res, next) {
+  const { id } = req.params;
   //your code here
-  db(`SELECT * FROM cities WHERE id = ${req.params.id} ;`)
+  db(`SELECT * FROM cities WHERE id = ${id} ;`)
     .then((results) => {
       res.send(results.data);
     })
     .catch((err) => res.status(500).send(err));
 });
 
-// ok so apparently i can only an entry(city) into the entries table when that city has already been added to the cities table
-// is that supposed to happen? do i want that to happen?
+// GET all the entries of ONE city
+router.get("/cities/:id/entries", async function (req, res, next) {
+  const { id } = req.params;
+  try {
+    const results = await db(
+      `SELECT cities.*, entries.description, entries.date
+    FROM cities
+    LEFT JOIN entries ON cities.id = entries.city_id
+    WHERE cities.id = ${id}
+    ORDER BY entries.date;`
+    );
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 // INSERT a new entry into the DB
 router.post("/", async function (req, res, next) {

@@ -16,7 +16,6 @@ export default function HomePage() {
   useEffect(() => {
     getCities();
   }, []);
-  // useEffect(() => console.log(cities), [cities]);
 
   function handleInputChange(event) {
     //does this working for matching the IDs ???
@@ -35,29 +34,7 @@ export default function HomePage() {
     setCities(data);
   }
 
-  // async function addCity(e) {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await fetch("/api/users/cities", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(entry),
-  //     });
-  //     const data = await response.json();
-  //     console.log(data);
-  //     if (!response.ok) throw new Error(data.message);
-  //     setCity({ city: "" });
-  //     //can i show the message from the backend here?
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
   async function addEntry(e) {
-    // e.preventDefault();
-
     try {
       const response = await fetch("/api/users", {
         method: "POST",
@@ -154,7 +131,7 @@ export default function HomePage() {
         </button>
       </form>
 
-      <Link to={"/entries"}>
+      <Link to={"/cities"}>
         <button className="buttonStyling">Entries</button>
       </Link>
     </div>

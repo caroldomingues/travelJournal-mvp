@@ -4,8 +4,8 @@
 }
 
 .theH1 {
-  color: #6570c1;
-  text-shadow: 1px 1px 2px #a0cbf0, 0 0 1em #8e94c0, 0 0 0.2em #ffffff;
+  color: #cedcc3;
+  text-shadow: 1px 1px 2px #475c3d, 0 0 1em #5a973b, 0 0 0.2em #205804;
 }
 
 .imgStylingAtEntry {
@@ -36,8 +36,8 @@ button {
 }
 
 .linkStyles {
-  text-shadow: 1px 1px 2px #2a5172, 0 0 1em #283dd9, 0 0 0.2em #7980b5;
+  text-shadow: 1px 1px 2px #3a5d29, 0 0 1em #a7b99e, 0 0 0.2em #8fa584;
   text-decoration: none;
-  color: #afb7f7;
+  color: #cedcc3;
   font-family: Arial;
 }

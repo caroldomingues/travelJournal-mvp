@@ -2,7 +2,7 @@
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
-  background-color: e7eaf6;
+  background-color: #cedcc3;
 }
 
 form {
@@ -19,8 +19,9 @@ button {
 }
 
 .insideTheFormDiv {
+  background-color: #eff7d3;
   border: 4px solid;
-  border-color: #113f67;
+  border-color: #535a3b;
   border-radius: 10px;
   margin: 10px 100px;
 }
