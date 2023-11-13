@@ -8,7 +8,7 @@ export default function Entries() {
   let [cities, setCities] = useState([]);
 
   useEffect(() => {
-    //getEntries();
+    getEntries();
     getCities();
     // getTheNameOfTheCity();
   }, []);

@@ -49,7 +49,7 @@ router.get("/cities/:id/entries", async function (req, res, next) {
   const { id } = req.params;
   try {
     const results = await db(
-      `SELECT cities.*, entries.description, entries.date
+      `SELECT cities.*, entries.description, entries.date, entries.imgUrl
     FROM cities
     LEFT JOIN entries ON cities.id = entries.city_id
     WHERE cities.id = ${id}

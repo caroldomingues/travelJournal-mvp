@@ -9,10 +9,10 @@ export default function Entry() {
     { city_id: "", date: "", description: "", imgUrl: "" },
   ]); //i want to put an actual loading thingy instead of default values, is that possible?
   const { id } = useParams();
-  let [city, setCity] = useState([]);
+  let [city, setCity] = useState([{ city: "" }]);
 
   useEffect(() => {
-    getEntries();
+    getEntriesFromCity();
     getCity();
   }, [id]);
 
@@ -32,31 +32,12 @@ export default function Entry() {
     }
   }
 
-  async function getEntries() {
-    const response = await fetch("/api/users/");
+  async function getEntriesFromCity() {
+    const response = await fetch(`/api/users//cities/${id}/entries`);
     const data = await response.json();
     setEntry(data);
+    console.log(entry);
   }
-
-  // async function getCities() {
-  //   const response = await fetch("/api/users/cities");
-  //   const data = await response.json();
-  //   setCity(data);
-  // }
-
-  // async function getEntry() {
-  //   try {
-  //     const response = await fetch(`/api/users/${id}`);
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setEntry(data);
-  //     } else {
-  //       console.log("Not able to fetch the data");
-  //     }
-  //   } catch (err) {
-  //     res.status(500).send(err);
-  //   }
-  // }
 
   async function deleteEntry(id) {
     try {
@@ -76,33 +57,23 @@ export default function Entry() {
   return (
     <div className="bodyOfEntry">
       <h1>{city[0].city}</h1>
-      {/* {city.map((c) => (
-        <div>
-          {entry.map((e) => (
-            <div>{e.city_id === c.id && <h1>{c.city}</h1>}</div>
-          ))}
-        </div>
-      ))}
-      {entry.map((e) => (
-        <div>
-          <div></div>
-          <br />
-          <div className="singleEntry">
-            <div className="dateAtEntry">{e.date}</div>
-            <p className="descriptionStyling">{e.description}</p>
-            <div className="smth"></div>
-            <div>
-              <img className="imgAtEntry" src={e.imgUrl} />
-            </div>
+      <div>
+        <br />
+        <div className="singleEntry">
+          <div className="dateAtEntry">{entry[0].date}</div>
+          <p className="descriptionStyling">{entry[0].description}</p>
+          <div className="smth"></div>
+          <div>
+            <img className="imgAtEntry" src={entry[0].imgUrl} />
           </div>
         </div>
-      ))} */}
+      </div>
       <Link to={`/cities/`}>
         <button>Back to cities</button>
         <button onClick={() => deleteEntry(entry[0].id)}>
           <i className="fa-solid fa-trash"></i>
         </button>
-      </Link>
+      </Link>{" "}
     </div>
   );
 }
