@@ -7,7 +7,7 @@ import "./City.css";
 export default function City() {
   const [entry, setEntry] = useState([
     { city_id: "", date: "", description: "", imgUrl: "" },
-  ]); //i want to put an actual loading thingy instead of default values, is that possible?
+  ]);
   const { id } = useParams();
   let [city, setCity] = useState([{ city: "" }]);
 

@@ -39,7 +39,7 @@ export default function Cities() {
         throw new Error(dataError.message);
       }
       const data = await response.text();
-      getCities();
+      getCities(data.data);
     } catch (err) {
       console.log(err);
     }
