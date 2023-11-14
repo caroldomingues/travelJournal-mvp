@@ -37,21 +37,24 @@ export default function City() {
     setEntry(data);
   }
 
-  async function deleteEntry(id) {
-    try {
-      const response = await fetch(`/api/users/${id}`, {
-        method: "DELETE",
-      });
-      console.log(response);
-      getEntriesFromCity();
-      if (!response.ok) {
-        const dataError = await response.json();
-        throw new Error(dataError.message);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  // async function deleteEntry(id) {
+  //   try {
+  //     const response = await fetch(`/api/users/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     console.log(response);
+  //     if (!response.ok) {
+  //       const dataError = await response.json();
+  //       throw new Error(dataError.message);
+  //     }
+  //     const data = await response.text();
+  //     const parsedData = data ? JSON.parse(data) : {};
+  //     setEntry(data);
+  //     getEntriesFromCity();
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
 
   return (
     <div className="bodyOfEntry">
@@ -68,12 +71,12 @@ export default function City() {
               <div>
                 <img className="imgAtEntry" src={e.imgUrl} />
               </div>{" "}
-              <button
+              {/* <button
                 className="theButtonStyle"
                 onClick={() => deleteEntry(e.id)}
               >
                 <i className="fa-solid fa-trash"></i>
-              </button>
+              </button> */}
             </div>
             <br />{" "}
           </div>

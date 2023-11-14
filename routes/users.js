@@ -182,7 +182,7 @@ router.delete("/:id", async function (req, res, next) {
     );
     if (results.data.length === 0) {
       await db(`DELETE FROM cities WHERE id = ${resultOfCityID};`);
-      res.send({ message: "City and entry were deleted successfully" });
+      return res.send({ message: "City and entry were deleted successfully" });
     }
     res.send(results.data);
   } catch (err) {
