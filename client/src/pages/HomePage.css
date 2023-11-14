@@ -44,10 +44,10 @@ form {
 
 .bottomLeftImage {
   position: fixed;
-  bottom: 30px;
+  bottom: 25px;
   left: 200px;
-  width: 250px;
-  transform: rotate(22deg);
+  width: 270px;
+  transform: rotate(27deg);
 }
 
 .topLeftImage {

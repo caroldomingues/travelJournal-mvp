@@ -1,6 +1,18 @@
-# MVP PROJECT
+# TRAVEL JOURNAL APP
 
-This assessment tests your understanding of building a full stack app using React, Node/Express, and MySQL.
+This app allows you to add journal entries while you travel! You can add an image, a description of your day and what you did, the date and also the city you were in. It's great to help you remember all the adventures and nice times you've had while traveling.
+
+​
+
+## Features:
+
+​
+
+- Add an entry
+- See all the cities you have added entries at
+- See all the entries a city has
+- Delete an entry and/or a city (which automatically deletes all the entries it contains)
+  ​
 
 ## Setup
 
