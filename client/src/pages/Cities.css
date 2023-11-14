@@ -8,17 +8,14 @@
   text-shadow: 1px 1px 2px #475c3d, 0 0 1em #5a973b, 0 0 0.2em #205804;
 }
 
-.imgStylingAtEntry {
-  max-width: 350px;
-  max-height: 200px;
-  border: 5px solid;
-  border-radius: 9px;
-  border-color: #a2a8d3;
-}
-
 .imgStyle {
-  width: 400px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 5px solid transparent;
+  border-radius: 15px;
+  opacity: 0.8;
+  aspect-ratio: 13 / 10; /* Set the desired aspect ratio, e.g., 16:9 */
 }
 
 .buttonStyle {
@@ -28,17 +25,6 @@
   color: aliceblue;
   border-color: #cedcc3;
   border: 2px solid;
-}
-.aroundTheEntries {
-  border: 4px solid;
-  border-color: #a2a8d3;
-  border-radius: 10px;
-  background-color: #38598b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0px;
-  padding: 8px;
 }
 
 .aroudAllEntries {
@@ -50,4 +36,28 @@
   text-decoration: none;
   color: #cedcc3;
   font-family: Arial;
+}
+
+.card {
+  position: relative;
+}
+
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.card-img-overlay h3 {
+  border-radius: 10px;
+  margin: 0;
+  color: #cedcc3;
 }

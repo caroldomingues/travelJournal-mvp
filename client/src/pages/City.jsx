@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./City.css";
 
-export default function Entry() {
+export default function City() {
   const [entry, setEntry] = useState([
     { city_id: "", date: "", description: "", imgUrl: "" },
   ]); //i want to put an actual loading thingy instead of default values, is that possible?
@@ -76,13 +76,13 @@ export default function Entry() {
       </div>
       <Link to={`/cities/`}>
         <button className="theButtonStyle">Back to cities</button>
-        <button
-          className="theButtonStyle"
-          onClick={() => deleteEntry(entry[0].id)}
-        >
-          <i className="fa-solid fa-trash"></i>
-        </button>
       </Link>{" "}
+      <button
+        className="theButtonStyle"
+        onClick={() => deleteEntry(entry[0].id)}
+      >
+        <i className="fa-solid fa-trash"></i>
+      </button>
     </div>
   );
 }

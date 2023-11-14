@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Cities.css";
 
-export default function Entries() {
-  const [entries, setEntries] = useState([{ imgUrl: "" }]);
+export default function Cities() {
+  const [entries, setEntries] = useState([
+    { "MIN(entries.imgUrl)": "", id: 0, city: "" },
+  ]);
   let [cities, setCities] = useState([]);
 
   useEffect(() => {
@@ -16,7 +18,6 @@ export default function Entries() {
     const response = await fetch("/api/users");
     const data = await response.json();
     setEntries(data);
-    console.log(entries);
   }
 
   async function getCities() {
@@ -25,40 +26,78 @@ export default function Entries() {
     setCities(data);
   }
 
-  // im very aware that this doest make any sense but idk how to make it make sense, i am very confused
   return (
     <div className="bodyOfEntries">
-      <h1 className="theH1">entries:</h1>
+      <h1 className="theH1">Cities:</h1>
       <div className="aroudAllEntries">
         <div className="row">
           {cities.map((c) => (
-            <div key={c.id} className="col-sm-3">
+            <div key={c.id} className="col-md-3 mb-4">
               <Link to={`/cities/${c.id}`} className="linkStyles">
                 <div className="card text-bg">
+                  {entries.map((e) => (
+                    <div key={e.id}>
+                      {e.id === c.id && (
+                        <div>
+                          <img
+                            className="card-img-top imgStyle"
+                            src={e["MIN(entries.imgUrl)"]}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  ))}
                   <div className="card-img-overlay">
                     <h3 className="linkStyles">{c.city}</h3>
                   </div>
                 </div>
               </Link>
             </div>
-          ))}
-        </div>
-        <div>
-          {entries.map((e) => (
-            <div key={e.id}>
-              <img className="imgStyle" src={e["MIN(entries.imgUrl)"]} />
-            </div>
-          ))}
+          ))}{" "}
         </div>
       </div>
       <br />
       <Link to={"/"}>
         <button className="buttonStyle">Add a new entry!</button>
-      </Link>
+      </Link>{" "}
     </div>
   );
-}
-{
+
+  // <div className="bodyOfEntries">
+  //   <h1 className="theH1">entries:</h1>
+  //   <div className="aroudAllEntries">
+  //     <div className="row">
+  //       {cities.map((c) => (
+  //         <div key={c.id} className="col-sm-3">
+  //           <Link to={`/cities/${c.id}`} className="linkStyles">
+  //             <div className="card text-bg">
+  //               <h3 className="linkStyles">{c.city}</h3>
+  //               <div className="card-img-overlay"></div>
+  //               {entries.map((e) => (
+  //                 <div key={e.id}>
+  //                   {e.id === c.id && (
+  //                     <div>
+  //                       <img
+  //                         className="imgStyle"
+  //                         src={e["MIN(entries.imgUrl)"]}
+  //                       />
+  //                     </div>
+  //                   )}
+  //                 </div>
+  //               ))}
+  //             </div>
+  //           </Link>
+  //         </div>
+  //       ))}
+  //     </div>
+  //     <div></div>
+  //   </div>
+  //   <br />
+  //   <Link to={"/"}>
+  //     <button className="buttonStyle">Add a new entry!</button>
+  //   </Link>
+  // </div>
+
   /* <div className="card-img-overlay">
   {cities.map((c) => (
     {e.city_id === c.id &&  <h3 className="linkStyles">

@@ -7,7 +7,6 @@ router.get("/", async function (req, res, next) {
   const { id } = req.params;
   try {
     const results = await db(
-      //oop this is wrong, help
       `SELECT
   cities.id,
   cities.city,
@@ -50,7 +49,7 @@ router.get("/:id", async function (req, res, next) {
   //your code here
   try {
     const results = await db(
-      `SELECT * FROM entries WHERE city_id = ${req.params.id} ;`
+      `SELECT * FROM entries WHERE id = ${req.params.id} ;`
     );
     res.send(results.data);
   } catch (err) {
@@ -173,9 +172,9 @@ router.delete("/:id", function (req, res, next) {
 // DELETE a city from the DB
 router.delete("/cities/:id", function (req, res, next) {
   //your code here
-  db(`DELETE FROM entry WHERE id = ${req.params.id};`)
+  db(`DELETE FROM cities WHERE id = ${req.params.id};`)
     .then((results) => {
-      res.send({ message: "Entry was deleted successfully" });
+      res.send({ message: "City was deleted successfully" });
     })
     .catch((err) => res.status(500).send(err));
 });
