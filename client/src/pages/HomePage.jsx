@@ -131,7 +131,7 @@ export default function HomePage() {
       </form>
 
       <Link to={"/cities"}>
-        <button className="buttonStyling">Entries</button>
+        <button className="buttonStyling">Cities</button>
       </Link>
       <img
         className="bottomRightImage"

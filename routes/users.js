@@ -3,7 +3,7 @@ var router = express.Router();
 const db = require("../model/helper");
 
 // GET first entry of each city
-router.get("/", async function (req, res, next) {
+router.get("/entry", async function (req, res, next) {
   try {
     const results = await db(
       `SELECT
@@ -184,7 +184,7 @@ router.delete("/:id", async function (req, res, next) {
       await db(`DELETE FROM cities WHERE id = ${resultOfCityID};`);
       res.send({ message: "City and entry were deleted successfully" });
     }
-    // res.send(results.data);
+    res.send(results.data);
   } catch (err) {
     res.status(500).send(err);
   }

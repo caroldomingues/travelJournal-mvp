@@ -42,15 +42,14 @@ export default function City() {
       const response = await fetch(`/api/users/${id}`, {
         method: "DELETE",
       });
+      console.log(response);
       if (!response.ok) {
         const dataError = await response.json();
         throw new Error(dataError.message);
       }
-      const data = await response.text();
-      const parsedData = data ? JSON.parse(data) : {};
       getEntriesFromCity();
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 
@@ -68,21 +67,21 @@ export default function City() {
               <div className="smth"></div>
               <div>
                 <img className="imgAtEntry" src={e.imgUrl} />
-              </div>
+              </div>{" "}
+              <button
+                className="theButtonStyle"
+                onClick={() => deleteEntry(e.id)}
+              >
+                <i className="fa-solid fa-trash"></i>
+              </button>
             </div>
-            <br />
+            <br />{" "}
           </div>
         ))}
       </div>
       <Link to={`/cities/`}>
         <button className="theButtonStyle">Back to cities</button>
       </Link>{" "}
-      <button
-        className="theButtonStyle"
-        onClick={() => deleteEntry(entry[0].id)}
-      >
-        <i className="fa-solid fa-trash"></i>
-      </button>{" "}
     </div>
   );
 }

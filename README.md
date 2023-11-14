@@ -1,17 +1,14 @@
 # TRAVEL JOURNAL APP
 
-This app allows you to add journal entries while you travel! You can add an image, a description of your day and what you did, the date and also the city you were in. It's great to help you remember all the adventures and nice times you've had while traveling.
-
-​
+Capture your travel adventures with the Travel Journal App! Record memorable moments, add photos, and revisit your experiences from around the world.
 
 ## Features:
 
-​
+- **Add an Entry:** Document your day with a description, date, and an image.
+- **View Cities:** Explore all the cities where you've added entries.
+- **City Entries:** Dive into the entries for a specific city to relive your experiences.
+- **Delete Entries and Cities:** Easily remove entries or entire cities, automatically deleting associated entries.
 
-- Add an entry
-- See all the cities you have added entries at
-- See all the entries a city has
-- Delete an entry and/or a city (which automatically deletes all the entries it contains)
   ​
 
 ## Setup
@@ -24,19 +21,52 @@ This app allows you to add journal entries while you travel! You can add an imag
 ### Database Prep
 
 - Access the MySQL interface in your terminal by running `mysql -u root -p`
-- Create a new database called facebook: `create database facebook`
-- Add a `.env` file to the project folder of this repository containing the MySQL authentication information for MySQL user. For example:
+- Create a new database called facebook: `mvp`
+- Add a (or verify) a `.env` file to the project folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
 ```bash
   DB_HOST=localhost
   DB_USER=root
-  DB_NAME=closet
-  DB_PASS=YOURPASSWORD
+  DB_NAME=mvp
+  DB_PASS=root
 ```
 
-- Run `npm run migrate` in the project folder of this repository, in a new terminal window. This will create a table called 'students' in your database.
+- Run `npm run migrate` in the project folder of this repository, in a new terminal window. This will create two tables, one called 'cities' and one called 'entries' in your database.
 
-- Make sure you understand how the `students` table is constructed. In your MySQL console, you can run `use facebook;` and then `describe students;` to see the structure of the students table.
+- Make sure you understand how each table is constructed. In your MySQL console, you can run `use mvp;` and then `describe cities;` or `describe entries;` to see the structure of the tables.
+
+- The tables have a one to many relationship. One city can have multiple entries, but an entry can only be from one city.
+
+### Usage
+
+- Once the development server and client are running, open your browser and navigate to http://localhost:5173 to access the Travel Journal App.
+
+## Adding a New Entry
+
+1. Select a City:
+   Choose a city from the dropdown menu or add a new city if doesn't exist.
+
+2. Provide entry details:
+   Fill in the description, date and image URL.
+
+3. Submit your entry:
+   Click the Submit button to add your entry to the journal
+
+## Viewing Cities and Entries
+
+- View Cities:
+  Click the "Cities" button to see all the cities where you've added entries.
+
+- View Entries:
+  On the "Cities" section, click on a city to see detailed entries for that location.
+
+## Deleting Cities and Entries
+
+- Delete a City:
+  In the "Cities" view, click the delete buttom to remove that city. Deleting a city will automatically remove all associated entries.
+
+- Delete an Entry:
+  In the "Entries" view, use the delete button to remove especific entries.
 
 ### Development
 

@@ -15,7 +15,7 @@ export default function Cities() {
   }, []);
 
   async function getFirstEntryFromEachCity() {
-    const response = await fetch("/api/users");
+    const response = await fetch("/api/users/entry");
     const data = await response.json();
     setEntries(data);
   }
@@ -25,6 +25,8 @@ export default function Cities() {
     const data = await response.json();
     setCities(data);
     console.log(cities);
+    console.log(entries);
+    entries.map((e) => console.log(e));
   }
 
   async function deleteCity(id) {
