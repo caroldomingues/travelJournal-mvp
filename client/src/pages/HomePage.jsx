@@ -52,7 +52,6 @@ export default function HomePage() {
         imgUrl: "",
         city: "",
       });
-      //can i show the message from the backend here?
     } catch (err) {
       console.log(err);
     }
@@ -63,7 +62,7 @@ export default function HomePage() {
       <h1>
         my travel journal <i className="fa-solid fa-earth-americas"></i>
       </h1>
-
+      {/* <marquee>🗺️💌</marquee> */}
       <h2>add a new entry:</h2>
 
       <form className="form" onSubmit={handleSubmit}>

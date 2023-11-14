@@ -24,6 +24,23 @@ export default function Cities() {
     const response = await fetch("/api/users/cities");
     const data = await response.json();
     setCities(data);
+    console.log(cities);
+  }
+
+  async function deleteCity(id) {
+    try {
+      const response = await fetch(`/api/users/cities/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        // const dataError = await response.json();
+        throw new Error(dataError.message);
+      }
+      const data = await response.text();
+      getCities();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -51,7 +68,13 @@ export default function Cities() {
                     <h3 className="linkStyles">{c.city}</h3>
                   </div>
                 </div>
-              </Link>
+              </Link>{" "}
+              <button
+                className="deleteButtonStyle"
+                onClick={() => deleteCity(c.id)}
+              >
+                Delete city <i className="fa-solid fa-trash"></i>
+              </button>
             </div>
           ))}{" "}
         </div>
@@ -62,87 +85,4 @@ export default function Cities() {
       </Link>{" "}
     </div>
   );
-
-  // <div className="bodyOfEntries">
-  //   <h1 className="theH1">entries:</h1>
-  //   <div className="aroudAllEntries">
-  //     <div className="row">
-  //       {cities.map((c) => (
-  //         <div key={c.id} className="col-sm-3">
-  //           <Link to={`/cities/${c.id}`} className="linkStyles">
-  //             <div className="card text-bg">
-  //               <h3 className="linkStyles">{c.city}</h3>
-  //               <div className="card-img-overlay"></div>
-  //               {entries.map((e) => (
-  //                 <div key={e.id}>
-  //                   {e.id === c.id && (
-  //                     <div>
-  //                       <img
-  //                         className="imgStyle"
-  //                         src={e["MIN(entries.imgUrl)"]}
-  //                       />
-  //                     </div>
-  //                   )}
-  //                 </div>
-  //               ))}
-  //             </div>
-  //           </Link>
-  //         </div>
-  //       ))}
-  //     </div>
-  //     <div></div>
-  //   </div>
-  //   <br />
-  //   <Link to={"/"}>
-  //     <button className="buttonStyle">Add a new entry!</button>
-  //   </Link>
-  // </div>
-
-  /* <div className="card-img-overlay">
-  {cities.map((c) => (
-    {e.city_id === c.id &&  <h3 className="linkStyles">
-    {c.city}
-    </h3>}
-    ))}
-    </div> */
-}
-
-{
-  /* {entries.map((e) => (
-      <div key={e.id} class="col-sm-3">
-      <Link to={`/entries/${e.id}`} className="linkStyles">
-      <div class="card text-bg">
-      <img
-      className="imgStylingAtEntry"
-      width={300}
-      height={200}
-      src={e.imgUrl}
-      />
-      <div className="card-img-overlay">
-      {cities.map((c) => (
-        <h3 className="linkStyles">{c.city}</h3>
-        ))}
-        </div>
-        
-        </div>
-        </Link>
-        </div>
-        ))} */
-}
-
-{
-  /* <div>
-        {entries.map((e) => (
-          <div>
-            {e.city_id === c.id && (
-              <img
-                className="imgStylingAtEntry"
-                width={300}
-                height={200}
-                src={e.imgUrl}
-              />
-            )}
-          </div>
-        ))}
-      </div> */
 }

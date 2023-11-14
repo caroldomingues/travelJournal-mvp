@@ -19,24 +19,22 @@ export default function City() {
   async function getCity() {
     try {
       const response = await fetch(`/api/users/cities/${id}`);
-      console.log(response);
       if (response.ok) {
         const data = await response.json();
         setCity(data);
-        console.log(city);
       } else {
         console.log("Not able to fetch the data");
       }
     } catch (err) {
       res.status(500).send(err);
     }
+    console.log(city);
   }
 
   async function getEntriesFromCity() {
     const response = await fetch(`/api/users//cities/${id}/entries`);
     const data = await response.json();
     setEntry(data);
-    console.log(entry);
   }
 
   async function deleteEntry(id) {
@@ -44,11 +42,13 @@ export default function City() {
       const response = await fetch(`/api/users/${id}`, {
         method: "DELETE",
       });
-      const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.message);
+        const dataError = await response.json();
+        throw new Error(dataError.message);
       }
-      getEntry();
+      const data = await response.text();
+      const parsedData = data ? JSON.parse(data) : {};
+      getEntriesFromCity();
     } catch (err) {
       console.log(err);
     }
@@ -82,7 +82,7 @@ export default function City() {
         onClick={() => deleteEntry(entry[0].id)}
       >
         <i className="fa-solid fa-trash"></i>
-      </button>
+      </button>{" "}
     </div>
   );
 }

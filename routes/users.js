@@ -2,9 +2,8 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 
-// GET entries list
+// GET first entry of each city
 router.get("/", async function (req, res, next) {
-  const { id } = req.params;
   try {
     const results = await db(
       `SELECT
@@ -28,16 +27,20 @@ ORDER BY
   } catch (err) {
     res.status(500).send(err);
   }
-  // db("SELECT * FROM entries;")
-  //   .then((results) => {
-  //     res.send(results.data);
-  //   })
-  //   .catch((err) => res.status(500).send(err));
 });
 
 // GET cities list
 router.get("/cities", function (req, res, next) {
   db("SELECT * FROM cities;")
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => res.status(500).send(err));
+});
+
+// GET entries list
+router.get("/", function (req, res, next) {
+  db("SELECT * FROM entries;")
     .then((results) => {
       res.send(results.data);
     })
@@ -160,23 +163,43 @@ router.post("/cities", function (req, res, next) {
 });
 
 // DELETE a entry from the DB
-router.delete("/:id", function (req, res, next) {
+router.delete("/:id", async function (req, res, next) {
   //your code here
-  db(`DELETE FROM entries WHERE id = ${req.params.id};`)
-    .then((results) => {
-      res.send({ message: "Entry was deleted successfully" });
-    })
-    .catch((err) => res.status(500).send(err));
+  try {
+    let resultOfCityID = await db(
+      `SELECT city_id FROM entries WHERE id =  ${req.params.id};`
+    );
+    await db(`DELETE FROM entries WHERE id = ${req.params.id};`);
+    // res.send({ resultOfCityID });
+    resultOfCityID = resultOfCityID.data[0].city_id;
+    // console.log(resultOfCityID);
+    const results = await db(
+      `SELECT cities.*, entries.description, entries.date, entries.imgUrl
+    FROM cities
+    INNER JOIN entries ON cities.id = entries.city_id
+    WHERE cities.id = ${resultOfCityID}
+    ORDER BY entries.date;`
+    );
+    if (results.data.length === 0) {
+      await db(`DELETE FROM cities WHERE id = ${resultOfCityID};`);
+      res.send({ message: "City and entry were deleted successfully" });
+    }
+    // res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 // DELETE a city from the DB
-router.delete("/cities/:id", function (req, res, next) {
+router.delete("/cities/:id", async function (req, res, next) {
   //your code here
-  db(`DELETE FROM cities WHERE id = ${req.params.id};`)
-    .then((results) => {
-      res.send({ message: "City was deleted successfully" });
-    })
-    .catch((err) => res.status(500).send(err));
+  try {
+    await db(`DELETE FROM entries WHERE city_id = ${req.params.id};`);
+    await db(`DELETE FROM cities WHERE id = ${req.params.id};`);
+    res.send({ message: "City was deleted successfully" });
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 module.exports = router;

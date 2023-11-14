@@ -26,6 +26,14 @@
   border-color: #cedcc3;
   border: 2px solid;
 }
+.deleteButtonStyle {
+  padding: 3px 8px;
+  border-radius: 10px;
+  background-color: #a7b99e;
+  color: aliceblue;
+  border-color: #cedcc3;
+  border: 2px solid;
+}
 
 .aroudAllEntries {
   margin: 0px 7px;
