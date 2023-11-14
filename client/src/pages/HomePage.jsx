@@ -43,7 +43,10 @@ export default function HomePage() {
         },
         body: JSON.stringify(entry),
       });
+      console.log(response);
       const data = await response.json();
+
+      console.log(data);
       if (!response.ok) throw new Error(data.message);
       setEntry({
         city_id: "",
@@ -133,7 +136,7 @@ export default function HomePage() {
       <Link to={"/cities"}>
         <button className="buttonStyling">Cities</button>
       </Link>
-      <img
+      {/* <img
         className="bottomRightImage"
         src="https://cdn-icons-png.flaticon.com/256/7496/7496821.png"
       />
@@ -148,7 +151,7 @@ export default function HomePage() {
       <img
         className="topRightImage"
         src="https://www.armadalib.org/images/memoir.png/@@images/image.png"
-      />
+      /> */}
     </div>
   );
 }

@@ -32,7 +32,7 @@ export default function City() {
   }
 
   async function getEntriesFromCity() {
-    const response = await fetch(`/api/users//cities/${id}/entries`);
+    const response = await fetch(`/api/users/cities/${id}/entries`);
     const data = await response.json();
     setEntry(data);
   }
@@ -43,11 +43,11 @@ export default function City() {
         method: "DELETE",
       });
       console.log(response);
+      getEntriesFromCity();
       if (!response.ok) {
         const dataError = await response.json();
         throw new Error(dataError.message);
       }
-      getEntriesFromCity();
     } catch (err) {
       console.error(err);
     }
