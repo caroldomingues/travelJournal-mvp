@@ -62,7 +62,7 @@ export default function HomePage() {
       <h1>
         my travel journal <i className="fa-solid fa-earth-americas"></i>
       </h1>
-      {/* <marquee>🗺️💌</marquee> */}
+
       <h2>add a new entry:</h2>
 
       <form className="form" onSubmit={handleSubmit}>
@@ -133,6 +133,22 @@ export default function HomePage() {
       <Link to={"/cities"}>
         <button className="buttonStyling">Entries</button>
       </Link>
+      <img
+        className="bottomRightImage"
+        src="https://cdn-icons-png.flaticon.com/256/7496/7496821.png"
+      />
+      <img
+        className="bottomLeftImage"
+        src="https://images.vexels.com/media/users/3/156708/isolated/preview/6f332cc60f7c82059eeeed0a5730aa7d-flight-ticket-icon.png"
+      />
+      <img
+        className="topLeftImage"
+        src="https://cdn-icons-png.flaticon.com/512/3165/3165890.png"
+      />
+      <img
+        className="topRightImage"
+        src="https://www.armadalib.org/images/memoir.png/@@images/image.png"
+      />
     </div>
   );
 }
