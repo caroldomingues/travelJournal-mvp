@@ -7,7 +7,7 @@ Capture your travel adventures with the Travel Journal App! Record memorable mom
 - **Add an Entry:** Document your day with a description, date, and an image.
 - **View Cities:** Explore all the cities where you've added entries.
 - **City Entries:** Dive into the entries for a specific city to relive your experiences.
-- **Delete Entries and Cities:** Easily remove entries or entire cities, automatically deleting associated entries.
+- **Delete Cities:** Easily remove cities, automatically deleting associated entries.
 
   ​
 
@@ -60,13 +60,10 @@ Capture your travel adventures with the Travel Journal App! Record memorable mom
 - View Entries:
   On the "Cities" section, click on a city to see detailed entries for that location.
 
-## Deleting Cities and Entries
+## Deleting Cities
 
 - Delete a City:
   In the "Cities" view, click the delete buttom to remove that city. Deleting a city will automatically remove all associated entries.
-
-- Delete an Entry:
-  In the "Entries" view, use the delete button to remove especific entries.
 
 ### Development
 
