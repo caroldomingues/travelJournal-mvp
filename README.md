@@ -72,6 +72,7 @@ Capture your travel adventures with the Travel Journal App! Record memorable mom
 - Delete a City:
   In the "Cities" view, click the delete buttom to remove that city. Deleting a city will automatically remove all associated entries.
 
+## App
 
   <img width="1440" alt="Screenshot 2024-02-27 at 16 26 34" src="https://github.com/caroldomingues/travelJournal-mvp/assets/146359430/dc49111e-99cb-47a4-8393-46036e1d60c2">
 
