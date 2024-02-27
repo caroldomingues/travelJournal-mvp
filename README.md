@@ -37,6 +37,13 @@ Capture your travel adventures with the Travel Journal App! Record memorable mom
 
 - The tables have a one to many relationship. One city can have multiple entries, but an entry can only be from one city.
 
+ 
+### Development
+
+- Run `npm start` in project directory to start the Express server on port 4000
+- In another terminal, do `cd client` and run `npm run dev` to start the client in development mode with hot reloading in port 5173.
+
+
 ### Usage
 
 - Once the development server and client are running, open your browser and navigate to http://localhost:5173 to access the Travel Journal App.
@@ -65,7 +72,7 @@ Capture your travel adventures with the Travel Journal App! Record memorable mom
 - Delete a City:
   In the "Cities" view, click the delete buttom to remove that city. Deleting a city will automatically remove all associated entries.
 
-### Development
 
-- Run `npm start` in project directory to start the Express server on port 4000
-- In another terminal, do `cd client` and run `npm run dev` to start the client in development mode with hot reloading in port 5173.
+  <img width="1440" alt="Screenshot 2024-02-27 at 16 26 34" src="https://github.com/caroldomingues/travelJournal-mvp/assets/146359430/dc49111e-99cb-47a4-8393-46036e1d60c2">
+
+
