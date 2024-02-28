@@ -21,7 +21,7 @@ Capture your travel adventures with the Travel Journal App! Record memorable mom
 ### Database Prep
 
 - Access the MySQL interface in your terminal by running `mysql -u root -p`
-- Create a new database called facebook: `mvp`
+- Create a new database called: `mvp`
 - Add a (or verify) a `.env` file to the project folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
 ```bash
